@@ -9,8 +9,8 @@ interface LoaderContext {
   addContextDependency(dir: string): unknown;
 }
 
-module.exports = function injectUserDeps(this: LoaderContext) {
-  const cosmosConfig = detectCosmosConfig();
+module.exports = async function injectUserDeps(this: LoaderContext) {
+  const cosmosConfig = await detectCosmosConfig();
 
   // This ensures this loader is invalidated whenever a new file is added to or
   // removed from user's project, which in turn triggers react-cosmos-voyager2

@@ -3,7 +3,9 @@ import { getFixtureUrls, getCosmosConfigAtPath } from 'react-cosmos';
 const cosmosConfig = getCosmosConfigAtPath(require.resolve('../cosmos.config'));
 
 it('returns playground URLs', async () => {
-  const rendererUrls = await getFixtureUrls({ cosmosConfig });
+  const rendererUrls = await getFixtureUrls({
+    cosmosConfig: await cosmosConfig,
+  });
   expect(rendererUrls).toMatchInlineSnapshot(`
     Array [
       "localhost:5000/?fixtureId=%7B%22path%22%3A%22src%2F__fixtures__%2FControls.tsx%22%7D",
@@ -20,7 +22,10 @@ it('returns playground URLs', async () => {
 });
 
 it('returns renderer URLs in full screen mode', async () => {
-  const rendererUrls = await getFixtureUrls({ cosmosConfig, fullScreen: true });
+  const rendererUrls = await getFixtureUrls({
+    cosmosConfig: await cosmosConfig,
+    fullScreen: true,
+  });
   expect(rendererUrls).toMatchInlineSnapshot(`
     Array [
       "localhost:5000/_renderer.html?_fixtureId=%7B%22path%22%3A%22src%2F__fixtures__%2FControls.tsx%22%7D",

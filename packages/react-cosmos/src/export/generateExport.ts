@@ -12,7 +12,7 @@ import { removeLeadingSlash } from '../shared/utils';
 const corePlugins: ExportPlugin[] = [webpackExportPlugin];
 
 export async function generateExport() {
-  const cosmosConfig = detectCosmosConfig();
+  const cosmosConfig = await detectCosmosConfig();
 
   // Clear previous export (or other files at export path)
   const { exportPath } = cosmosConfig;

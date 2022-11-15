@@ -27,7 +27,7 @@ const corePlugins: DevServerPlugin[] = [
 ];
 
 export async function startDevServer(platformType: PlatformType) {
-  const cosmosConfig = detectCosmosConfig();
+  const cosmosConfig = await detectCosmosConfig();
   logCosmosConfigInfo();
 
   const pluginConfigs = getPluginConfigs(cosmosConfig);

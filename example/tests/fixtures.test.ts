@@ -6,7 +6,7 @@ const cosmosConfig = getCosmosConfigAtPath(require.resolve('../cosmos.config'));
 
 it('returns fixture elements', async () => {
   expect.hasAssertions();
-  const fixtures = await getFixtures({ cosmosConfig });
+  const fixtures = await getFixtures({ cosmosConfig: await cosmosConfig });
   fixtures.forEach(({ fixtureId, getElement }) => {
     const renderer = create(getElement());
     expect(renderer.toJSON()).toMatchSnapshot(stringifyFixtureId(fixtureId));

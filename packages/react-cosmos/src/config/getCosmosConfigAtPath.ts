@@ -3,8 +3,8 @@ import { CosmosConfigInput } from 'react-cosmos-shared2/cosmosConfig';
 import { createCosmosConfig } from './createCosmosConfig';
 import { requireConfigFile } from './shared';
 
-export function getCosmosConfigAtPath(cosmosConfigPath: string) {
-  const cosmosConfigInput = requireConfigFile(cosmosConfigPath);
+export async function getCosmosConfigAtPath(cosmosConfigPath: string) {
+  const cosmosConfigInput = await requireConfigFile(cosmosConfigPath);
   const rootDir = deriveRootDir(cosmosConfigPath, cosmosConfigInput);
   return createCosmosConfig(rootDir, cosmosConfigInput);
 }

@@ -2,9 +2,9 @@
 import fs from 'fs';
 
 export function requireModule(modulePath: string) {
-  // This purpose of this wrapper is merely to make it easy to mock user
-  // modules in tests
-  return require(modulePath);
+  return modulePath.endsWith('.mjs')
+    ? import(modulePath)
+    : Promise.resolve(require(modulePath));
 }
 
 // Better than fs.exists because it works for module paths without an extension

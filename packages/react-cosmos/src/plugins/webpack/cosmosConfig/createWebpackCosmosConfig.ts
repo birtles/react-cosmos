@@ -36,7 +36,18 @@ function getWebpackConfigPath(
   rootDir: string
 ) {
   if (typeof configPath === 'undefined') {
-    return resolveModule(rootDir, 'webpack.config.js');
+    // Look for a Common JS config file first, for backwards compatibility
+    const cjsPath = resolveModule(rootDir, 'webpack.config.js');
+    // If it doesn't exist, look for an ESM version, but if that too doesn't
+    // exist, return the (non-existent) path to the Common JS version since that
+    // will probably produce a less-confusing error message.
+    if (!fileExists(cjsPath)) {
+      const mjsPath = resolveModule(rootDir, 'webpack.config.mjs');
+      if (fileExists(mjsPath)) {
+        return mjsPath;
+      }
+    }
+    return cjsPath;
   }
 
   // User can choose to prevent automatical use of an existing webpack.config.js

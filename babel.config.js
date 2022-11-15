@@ -2,6 +2,7 @@
 // regenerator-runtime polyfills in every entry point, but it crashes on IE11
 // https://stackoverflow.com/q/40897966/128816
 const envOptions = {
+  exclude: ['proposal-dynamic-import'],
   targets: { ie: '11' },
 };
 
