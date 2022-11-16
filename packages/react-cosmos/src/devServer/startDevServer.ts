@@ -34,7 +34,7 @@ export async function startDevServer(
   platformType: PlatformType,
   plugins: DevServerPlugin[] = []
 ) {
-  const cosmosConfig = detectCosmosConfig();
+  const cosmosConfig = await detectCosmosConfig();
   logCosmosConfigInfo();
 
   const pluginConfigs = getPluginConfigs(cosmosConfig);

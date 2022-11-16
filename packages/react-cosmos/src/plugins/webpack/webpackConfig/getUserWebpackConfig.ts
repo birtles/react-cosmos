@@ -40,7 +40,7 @@ export async function getUserWebpackConfig(
   const relPath = path.relative(process.cwd(), overridePath);
   console.log(`[Cosmos] Overriding webpack config at ${relPath}`);
   const webpackOverride = getDefaultExport(
-    requireModule(overridePath)
+    await requireModule(overridePath)
   ) as WebpackOverride;
 
   return webpackOverride(baseWebpackConfig, getWebpackNodeEnv());
@@ -62,7 +62,7 @@ async function getBaseWebpackConfig(
   console.log(`[Cosmos] Using webpack config found at ${relPath}`);
 
   const userConfigExport = getDefaultExport(
-    requireModule(configPath)
+    await requireModule(configPath)
   ) as WebpackConfigExport;
   const cliArgs = getCliArgs();
   return typeof userConfigExport === 'function'

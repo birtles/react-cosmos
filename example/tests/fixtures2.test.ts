@@ -1,10 +1,10 @@
 import { getCosmosConfigAtPath, getFixtures2 } from 'react-cosmos';
 
 const cosmosConfig = getCosmosConfigAtPath(require.resolve('../cosmos.config'));
-const { rootDir } = cosmosConfig;
 
 it('returns fixture info', async () => {
-  const fixtures = getFixtures2(cosmosConfig);
+  const { rootDir } = await cosmosConfig;
+  const fixtures = getFixtures2(await cosmosConfig);
   expect(fixtures).toEqual([
     {
       absoluteFilePath: `${rootDir}/src/__fixtures__/Controls.tsx`,

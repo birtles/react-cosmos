@@ -15,7 +15,7 @@ export type ExportPluginArgs = {
 export type ExportPlugin = (args: ExportPluginArgs) => unknown;
 
 export async function generateExport(plugins: ExportPlugin[] = []) {
-  const cosmosConfig = detectCosmosConfig();
+  const cosmosConfig = await detectCosmosConfig();
 
   // Clear previous export (or other files at export path)
   const { exportPath } = cosmosConfig;

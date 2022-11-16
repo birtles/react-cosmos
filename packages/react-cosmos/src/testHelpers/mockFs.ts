@@ -9,7 +9,7 @@ jest.mock('../shared/fs', () => {
   let dirMocks: string[] = [];
 
   function requireModule(filePath: string) {
-    return fileMocks[filePath] || fileMocks[`${filePath}.js`];
+    return Promise.resolve(fileMocks[filePath] || fileMocks[`${filePath}.js`]);
   }
 
   function moduleExists(filePath: string) {

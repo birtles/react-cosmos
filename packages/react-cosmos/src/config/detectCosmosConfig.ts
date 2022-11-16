@@ -5,11 +5,11 @@ import { createCosmosConfig } from './createCosmosConfig';
 import { getCosmosConfigAtPath } from './getCosmosConfigAtPath';
 import { getCurrentDir } from './shared';
 
-export function detectCosmosConfig() {
+export async function detectCosmosConfig() {
   const cosmosConfigPath = detectCosmosConfigPath();
   return cosmosConfigPath
     ? getCosmosConfigAtPath(cosmosConfigPath)
-    : createCosmosConfig(detectRootDir());
+    : Promise.resolve(createCosmosConfig(detectRootDir()));
 }
 
 export function detectCosmosConfigPath() {
